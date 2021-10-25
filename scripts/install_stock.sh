@@ -48,7 +48,12 @@ K8S_VERSION=1.20.6-00
 curl --silent --show-error https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
 sudo sh -c "echo 'deb http://apt.kubernetes.io/ kubernetes-xenial main' > /etc/apt/sources.list.d/kubernetes.list"
 sudo apt-get update >> /dev/null
-sudo apt-get -y install cri-tools ebtables ethtool kubeadm=$K8S_VERSION kubectl=$K8S_VERSION kubelet=$K8S_VERSION kubernetes-cni >> /dev/null
+sudo apt-get -y install cri-tools ebtables ethtool kubernetes-cni >> /dev/null
+sudo apt-get -y install iptables iproute2 socat util-linux mount conntrack >> /dev/null
+
+sudo dpkg -i /proj/faas-sched-PG0/kube_exe/custom_v1.20.6/kubectl.deb
+sudo dpkg -i /proj/faas-sched-PG0/kube_exe/custom_v1.20.6/kubelet.deb
+sudo dpkg -i /proj/faas-sched-PG0/kube_exe/custom_v1.20.6/kubeadm.deb
 
 # Install knative CLI
 KNATIVE_VERSION=v0.26.0
